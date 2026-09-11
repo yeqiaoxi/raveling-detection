@@ -22,9 +22,9 @@ tmp/
 .vscode/
 .DS_Store
 Thumbs.db
+~$*.docx
 
 # Secrets
 .env
 *.key
 kaggle.json
-

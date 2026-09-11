@@ -35,7 +35,7 @@ class SeparableConvBlock(nn.Module):
 
 
 class CFDSLiteUNet(nn.Module):
-    def __init__(self, in_channels: int = 3, base_channels: int = 64) -> None:
+    def __init__(self, in_channels: int = 3, base_channels: int = 64, num_classes: int = 1) -> None:
         super().__init__()
         c = base_channels
         self.enc1 = SeparableConvBlock(in_channels, c)
@@ -47,7 +47,7 @@ class CFDSLiteUNet(nn.Module):
         self.dec3 = SeparableConvBlock(c * 12, c * 4)
         self.dec2 = SeparableConvBlock(c * 6, c * 2)
         self.dec1 = SeparableConvBlock(c * 3, c)
-        self.head = nn.Conv2d(c, 1, 1)
+        self.head = nn.Conv2d(c, num_classes, 1)
         self.pool = nn.MaxPool2d(2)
 
     @staticmethod
@@ -70,4 +70,3 @@ class CFDSLiteUNet(nn.Module):
 
 def parameter_count(model: nn.Module) -> int:
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
-

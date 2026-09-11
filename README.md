@@ -16,6 +16,22 @@ python -m pip install -r requirements.txt
 
 训练数据、模型权重、日志、PDF 论文及账号密钥默认不会提交到 Git 仓库。
 
+## PaveSeg 多病害分割
+
+公开预览集包含背景、裂缝、坑槽、封缝、修补、龟裂、井盖和伸缩缝八个类别。下载并训练：
+
+```bash
+mkdir -p data/raw
+git clone --depth 1 https://github.com/FuturePave/PaveSeg-Dataset.git data/raw/paveseg
+python paveseg_training.py train --data data/raw/paveseg --output runs/paveseg_best.pt --device cuda
+```
+
+有效 batch size 20 使用梯度累积：
+
+```bash
+python paveseg_training.py train --data data/raw/paveseg --output runs/paveseg_bs20.pt --batch-size 4 --accumulation-steps 5 --device cuda
+```
+
 ## 云端获取项目
 
 仓库推送到 GitHub 或 Gitee 后，可在 GPU 服务器终端直接执行：

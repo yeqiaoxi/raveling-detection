@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Training data and artifacts
+data/
+runs/
+checkpoints/
+weights/
+*.pt
+*.pth
+*.ckpt
+
+# Local source material and temporary rendering
+*.pdf
+tmp/
+
+# IDE and operating system
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+kaggle.json
+
